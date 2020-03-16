@@ -41,9 +41,9 @@ public class AuditActivitiesInterceptor extends HandlerInterceptorAdapter {
             String[] split1 = sorts[0].split(",");
             logData.setSortBy(split1[0]);
             if (split1.length == 2) {
-                logData.setOrder(split1[1].toLowerCase());
+                logData.setSortDirection(split1[1].toLowerCase());
             } else {
-                logData.setOrder("asc");
+                logData.setSortDirection("asc");
             }
         }
         auditLogger.log(logData);

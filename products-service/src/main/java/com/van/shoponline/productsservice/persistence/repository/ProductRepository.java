@@ -20,5 +20,5 @@ public interface ProductRepository extends PagingAndSortingRepository<ProductEnt
     Page<ProductEntity> findByColorIgnoreCase(@Param("color") String color, Pageable p);
 
     @RestResource(path = "byCategory", rel = "byCategory")
-    Page<ProductEntity> findByCategory_Id(@Param("category_id") Long categoryId, Pageable p);
+    Page<ProductEntity> findByCategory_Id(@Param("category") Long categoryId, Pageable p);
 }

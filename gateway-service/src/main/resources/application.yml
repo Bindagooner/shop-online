@@ -3,14 +3,13 @@ spring:
     name: gateway-service
 server:
   port: 7770
-  servlet:
-    context-path: /
 
 eureka:
   client:
     service-url:
       defaultZone: http://${eureka.server.host}:${eureka.server.port}/registry/eureka
     fetch-registry: true
+    register-with-eureka: false
   server:
     host: localhost
     port: 8761
@@ -28,12 +27,11 @@ zuul:
     socket-timeout-millis: 20000
   routes:
     products-service:
-      path: /products-serivce/**
-      serviceId: products-serivce
+      path: /products-service/**
+      serviceId: products-service
       stripPrefix: false
       sensitiveHeaders:
 
 logging:
   level:
     ROOT: INFO
-    org.springframework.web: DEBUG

@@ -12,6 +12,6 @@ public class ActivityLogData {
     private String type;
     private String searchBy;
     private String searchQuery;
-    private String order;
+    private String sortDirection;
     private String sortBy;
 }

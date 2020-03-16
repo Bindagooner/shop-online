@@ -32,9 +32,9 @@ public class ActivityLogEntity {
     @Basic
     private String sortBy;
 
-    @Column(name = "order_by")
+    @Column(name = "sort_direction")
     @Basic
-    private String orderBy;
+    private String sortDirection;
 
     @Column(name = "time_stamp")
     @Basic

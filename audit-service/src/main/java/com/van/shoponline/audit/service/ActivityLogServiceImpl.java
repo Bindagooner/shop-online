@@ -15,7 +15,7 @@ public class ActivityLogServiceImpl implements IActivityLogService {
     @Override
     public ActivityLogEntity save(ActivityLogData dto) {
         ActivityLogEntity entity = new ActivityLogEntity();
-        entity.setOrderBy(dto.getOrder());
+        entity.setSortDirection(dto.getSortDirection());
         entity.setSortBy(dto.getSortBy());
         entity.setSearchBy(dto.getSearchBy());
         entity.setSearchQuery(dto.getSearchQuery());
