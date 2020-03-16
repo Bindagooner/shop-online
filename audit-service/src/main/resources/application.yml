@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: audit-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/audit?autoReconnect=true&useSSL=false&createDatabaseIfNotExist=true
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        dialect: org.hibernate.dialect.MySQL57Dialect
+  rabbitmq:
+    host: localhost
+    port: 5672
+server:
+  port: 7778
+  servlet:
+    context-path: /audit-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.server.host}:${eureka.server.port}/registry/eureka
+    fetch-registry: true
+  server:
+    host: localhost
+    port: 8761

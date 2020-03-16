@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: products-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 7777
+  servlet:
+    context-path: /products-service
+
