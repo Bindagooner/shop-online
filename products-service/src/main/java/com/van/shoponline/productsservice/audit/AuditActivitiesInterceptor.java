@@ -22,15 +22,19 @@ public class AuditActivitiesInterceptor extends HandlerInterceptorAdapter {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
                                 @Nullable Exception ex) throws Exception {
 
-        String uri = request.getRequestURI();
+        ActivityLogData logData = buildActivityLogData(request.getRequestURI(), request.getParameterMap());
+        auditLogger.log(logData);
+        log.info(logData.toString());
+    }
+
+    protected ActivityLogData buildActivityLogData(String uri, Map<String, String[]> parameterMap) {
         String[] split = uri.split("/");
-        Map<String, String[]> parameterMap = request.getParameterMap();
         ActivityLogData logData = new ActivityLogData();
         logData.setTimeStamp(new Date());
         logData.setType(split[3]);
         if (split.length >= 5 && "search".equalsIgnoreCase(split[4])) {
             String searchBy = split[5].replace("by", "");
-            logData.setSearchBy(searchBy);
+            logData.setSearchBy(searchBy.toLowerCase());
             String[] query = parameterMap.get(searchBy.toLowerCase());
             if (null != query) {
                 logData.setSearchQuery(String.join(",", parameterMap.get(searchBy.toLowerCase())));
@@ -46,7 +50,6 @@ public class AuditActivitiesInterceptor extends HandlerInterceptorAdapter {
                 logData.setSortDirection("asc");
             }
         }
-        auditLogger.log(logData);
-        log.info(logData.toString());
+        return logData;
     }
 }
